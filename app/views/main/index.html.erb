@@ -1,0 +1,69 @@
+<div class="flex h-screen">
+  <div class="w-full p-10">
+    <%= form_with url: generate_payment_path, method: :post do |form| %>
+      <%= form.submit "Generate Rent Payment Schedule", class: "relative w-full flex justify-center items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-gray-900 rounded-md hover:bg-gray-700 focus:outline-none cursor-pointer" %>
+      
+      <div class="mt-5 bg-white rounded-lg shadow">
+        <div class="px-5 py-5">
+          <h2 class="inline text-xl font-semibold leading-none">Rent</h2>
+
+          <div class="mt-6">
+            <%= form.label :rent_amount, "Rent Amount" %>
+            <%= form.number_field :rent_amount, class: "text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400", placeholder: "Amount" %>
+          </div>
+
+          <div class="mt-6">
+            <%= form.label :rent_frequency, "Rent Frequency" %>
+            <%= form.select :rent_frequency, Rent::FREQUENCIES, {}, { class: "text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" } %>
+          </div>
+
+          <div class="mt-6">
+            <label>Rent Start at</label>
+            <div class="relative">
+              <input datepicker id="default-datepicker" datepicker-format="yyyy-mm-dd" type="text" name="rent_start_date" class="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" placeholder="Select date">
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label>Rent End at</label>
+            <div class="relative">
+              <input datepicker id="default-datepicker" datepicker-format="yyyy-mm-dd" type="text" name="rent_end_date" class="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" placeholder="Select date">
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <%= form.label :payment_method, "Payment Method" %>
+            <%= form.select :payment_method, Rent::PAYMENT_METHODS, {}, { class: "text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" } %>
+          </div>
+
+          <div class="pt-4">
+            <h2 class="inline text-xl font-semibold leading-none">Apply Rent Changes</h2>
+
+            <div class="mt-6">
+              <%= form.label :change_amount, "Rent Change Amount" %>
+              <%= form.number_field :change_amount, class: "text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400", placeholder: "Amount" %>
+            </div>
+
+            <div class="mt-6">
+              <label>Effective At</label>
+              <div class="relative">
+                <input datepicker id="default-datepicker" datepicker-format="yyyy-mm-dd" type="text" name="effective_at" class="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" placeholder="Select date">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="w-full p-10 text-center">
+
+    <%= turbo_frame_tag "schedule_list" do %>
+      <div class="text-gray-600 italic text-2xl">
+        <h2>No Result Found</h2>
+        <h2>Please Generate a Payment Schedule</h2>
+      </div>
+    <% end %>
+  </div>
+</div>
+  

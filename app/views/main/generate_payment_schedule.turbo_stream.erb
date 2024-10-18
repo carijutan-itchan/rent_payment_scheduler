@@ -1,0 +1,23 @@
+<%= turbo_stream.replace "schedule_list" do %>
+  <%= turbo_frame_tag "schedule_list" do %>
+    <% @response.each do |payment| %>
+      <div class="mt-5 bg-white rounded-lg shadow p-3">
+        <div class="text-left">
+          <h2 class="font-bold text-xl"><%= Date.parse(payment[:date]).strftime("%B %d, %Y") %></h2>
+        </div>
+
+        <div class="flex justify-between py-4">
+          <div class="flex">
+            <h3 class="mr-3">Payment Method:</h3>
+            <h3><%= payment[:payment_method] %></h3>
+          </div>
+
+           <div class="flex">
+            <h3 class="mr-3">Amount:</h3>
+            <h3><%= payment[:amount] %></h3>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
