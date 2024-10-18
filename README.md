@@ -24,5 +24,5 @@ The application highlights the following:
 ## Instruction
 1. Fork this repository
 2. Clone the forked repository
-3. Go to root directory of cloned repo and run `bin/dev`
+3. Go to root directory of cloned repo and run ` rails db:seed` and `bin/dev`
 4. Access the app through `http://localhost:3000/`
